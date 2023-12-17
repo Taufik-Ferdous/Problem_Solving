@@ -1,0 +1,100 @@
+/**
+ *    Author: lulu (Tasmir_)
+ *    Created: 17-December-2023  10:23:23
+**/
+#include<bits/stdc++.h>
+using namespace std;
+
+#define optimize() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+
+#define ll long long
+
+#define fo(i,n) for(ll i=0; i<n; ++i)
+#define Fo(i,k,n) for(ll i=k;k<n?i<n:i>=n;i<n?++i:--i)
+#define deb(x) cout<<#x <<"=" <<x <<endl
+#define deb2(x,y) cout<<#x <<"=" <<x <<" " <<#y <<"=" <<y <<endl
+#define pb push_back
+#define mp make_pair
+#define F first
+#define S second
+#define all(x) x.begin(), x.end()
+#define allr(x) x.rbegin(), x.rend()
+#define endl "\n"
+
+typedef pair<ll,ll>      pl;
+typedef vector<ll>       vl;
+
+const int mod = 1e9+7;
+const ll N = 1e7+10;
+//====================================
+
+vl prime_num(N, 1);
+void is_prime(){
+    prime_num[0] = 0;
+    prime_num[1] = 0;
+    for(ll i=2; i<=1022201; ++i){
+        for(ll j=i*2; j<=1022201; j+=i){
+            prime_num[j]=0;
+        }
+    }
+}
+
+vl prime_vec;
+void prime_fill(){
+    for(ll i=0; i<=1022201; ++i){
+        if(prime_num[i]){
+            prime_vec.pb(i);
+        }
+    }
+}
+
+bool is_pal(string s){
+    ll len = s.length();
+    for(ll i=0, j=len-1; i<len/2; ++i, --j){
+        if(s[i]!=s[j]) return false;
+    }
+    return true;
+}
+
+vl pal;
+void ans_fill(){
+    ll count=0;
+    pal.pb(0);
+    ll len = prime_vec.size();
+    for(ll i=0; i<len; ++i){
+        ll dum = prime_vec[i];
+        string d = to_string(dum);
+        if(is_pal(d)){
+            pal.pb(prime_vec[i]);
+            ++count;
+            if(count>115) break;
+        }
+    }
+}
+
+
+void solve(){
+    ll n; cin>>n;
+    ll dum = pal[n];
+    ll ans = 1;
+
+    while(dum>0){
+        ll temp = dum%10;
+        if(temp) ans*=temp;
+        dum/=10;
+    }
+    cout<<pal[n] <<' ' <<prime_vec[ans-1] <<endl;
+    // for(auto i: pal) cout<<i <<endl;
+}
+
+
+int main(){
+    optimize();
+    is_prime();
+    prime_fill();
+    ans_fill();
+    ll t=1;
+    cin>>t;
+    while(t--)
+        solve();
+}
