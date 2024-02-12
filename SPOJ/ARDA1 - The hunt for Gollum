@@ -1,0 +1,56 @@
+/**
+ *    Author: lulu (Tasmir_)
+ *    Created: 12-February-2024  19:26:56
+**/
+#include<bits/stdc++.h>
+using namespace std;
+
+#define optimize() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+
+#define ll long long
+
+//====================================
+
+void solve(){
+    ll gr, gc; cin>>gr >>gc;
+    vector<string> g(gr);
+    for(auto &i: g) cin>>i;
+
+    ll fr, fc; cin>>fr >>fc;
+    vector<string> f(fr);
+    for(auto &i: f) cin>>i;
+
+    bool ans = 1;
+
+    for(ll i=0; i<=fr-gr; ++i){
+        for(ll j=0; j<=fc-gc; ++j){
+            if(f[i][j] == g[0][0]){
+                bool flag=1;
+                for(ll k=0; k<gr; ++k){
+                    for(ll l=0; l<gc; ++l){
+                        if(f[i+k][j+l] != g[k][l]){
+                            flag=0;
+                            break;
+                        }
+                    }
+                    if(flag==0) break;
+                }
+                if(flag){
+                    cout<<'(' <<i+1 <<',' <<j+1 <<')' <<'\n';
+                    ans = 0;
+                }
+            }
+        }
+    }
+    if(ans) cout<<"NO MATCH FOUND..." <<'\n';
+}
+
+
+int main(){
+    optimize();
+
+    ll t=1;
+    // cin>>t;
+    while(t--)
+        solve();
+}
