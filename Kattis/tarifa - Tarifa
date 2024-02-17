@@ -1,0 +1,32 @@
+/**
+ *    Author: lulu (Tasmir_)
+ *    Created: 17-February-2024  12:51:36
+**/
+#include<bits/stdc++.h>
+using namespace std;
+
+#define optimize() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+
+#define ll long long
+
+//====================================
+
+void solve(){
+    ll m, n; cin>>m >>n;
+    ll sum=0, total = m*n;
+    while(n--){
+        ll dum; cin>>dum;
+        sum+=dum;
+    }
+    cout<<total-sum+m <<'\n';
+}
+
+
+int main(){
+    optimize();
+
+    ll t=1;
+    // cin>>t;
+    while(t--)
+        solve();
+}
