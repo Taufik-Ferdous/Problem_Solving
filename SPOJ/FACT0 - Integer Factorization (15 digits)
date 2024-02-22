@@ -1,0 +1,50 @@
+/**
+ *    Author: lulu (Tasmir_)
+ *    Created: 13-February-2024  12:42:30
+**/
+#include<bits/stdc++.h>
+using namespace std;
+
+#define optimize() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+
+#define ll long long
+
+//====================================
+
+bool is_prime(ll n){
+    for(ll i=2; i*i<=n; ++i) if(n%i==0) return false;
+    return true;
+}
+
+void solve(){
+    while(true){
+        ll n; cin>>n;
+        if(n==0) break;
+        // else if(is_prime(n)){
+        //     cout<<n <<"^1" <<'\n';
+        //     continue;
+        // }
+        map<ll, ll> m;
+        ll inc=2;
+        while(inc*inc<=n){
+            if(n%inc==0){
+                m[inc]++;
+                n/=inc;
+            }
+            else ++inc;
+        }
+        if(n>1) m[n]++;
+        for(auto i: m) cout<<i.first <<"^" <<i.second <<' ';
+        cout<<'\n';
+    }
+}
+
+
+int main(){
+    optimize();
+
+    ll t=1;
+    // cin>>t;
+    while(t--)
+        solve();
+}
