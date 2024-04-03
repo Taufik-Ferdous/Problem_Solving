@@ -1,0 +1,47 @@
+/**
+ *    Author: lulu (Tasmir_)
+ *    Created: 03-April-2024  08:13:05
+**/
+#include<bits/stdc++.h>
+using namespace std;
+
+#define optimize() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+
+#define ll long long
+
+//====================================
+
+void solve(){
+    ll n, q; cin>>n >>q;
+    vector<ll> a(n+1, 0);
+    vector<ll> b(n+1, 0);
+    vector<ll> c(n+1, 0);
+    ll ca=0, cb=0, cc=0;
+    for(ll i=1; i<=n; ++i){
+        ll dum; cin>>dum;
+        if(dum==1) ++ca;
+        else if(dum==2) ++cb;
+        else ++cc;
+        a[i]=ca, b[i]=cb, c[i]=cc;
+    }
+    while(q--){
+        ll l, r; cin>>l >>r;
+        cout<<a[r]-a[l-1] <<' ' <<b[r]-b[l-1] <<' '<<c[r]-c[l-1] <<'\n';
+    }
+}
+
+
+int main(){
+
+#ifndef ONLINE_JUDGE
+    freopen("bcount.in", "r", stdin);
+    freopen("bcount.out", "w", stdout);
+#endif
+
+    optimize();
+
+    ll tc=1;
+    // cin>>tc;
+    while(tc--)
+        solve();
+}
